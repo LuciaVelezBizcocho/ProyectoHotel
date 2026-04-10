@@ -10,26 +10,36 @@ public class Alquiler {
     private localDate fechaEntrada, fechaSalida;
 
     public void setId(int id) {
+
         this.id = id;
+
     }
 
     public void setId_hotel(int id_hotel) {
+
         this.id_hotel = id_hotel;
+
     }
 
     public void setId_habitacion(int id_habitacion) {
+
         this.id_habitacion = id_habitacion;
+
     }
 
     public void setNombreUsuario(String nombreUsuario) {
+
         this.nombreUsuario = nombreUsuario;
+
     }
 
-    public void setFechaEntrada(localDate fechaEntrada) {
+    public void setFechaEntrada(localDate fechaEntrada)
+    {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public void setFechaSalida(localDate fechaSalida) {
+    public void setFechaSalida(localDate fechaSalida)
+    {
         this.fechaSalida = fechaSalida;
     }
 

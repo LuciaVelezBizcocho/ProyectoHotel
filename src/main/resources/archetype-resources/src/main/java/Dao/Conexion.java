@@ -11,11 +11,21 @@ public class Conexion {
     ResultSet rs = null;
 
     public static Connection conectar() {
+        try {
+            return DriverManager.getConnection(URL, USER, PASS); // Devuelve el estado de la conexion de la base de datos
+        } catch (SQLException e) {
+            System.err.println("Error de conexión: " + e.getMessage());
+            return null;
+        }
+    }
 
 }
 
     public static void desconectar() {
-        
+        if  (conn!= null ){
+            conn.close();
+
+        }
 
     }
 }
