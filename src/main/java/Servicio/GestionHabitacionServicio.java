@@ -32,6 +32,7 @@ public class GestionHabitacionServicio {
 
         if (usuario.esMayorEdad() && usuarioDAO.altaUsuario(usuario)) {
             System.out.println(" Usuario creado correctamente");
+            System.out.println("LO q sea");
         } else {
             System.out.println(" Error: menor de edad o fallo en BD");
         }
