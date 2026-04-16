@@ -33,5 +33,6 @@ public class HabitacionDAO {
             System.err.println("Error listando habitaciones: " + e.getMessage());
         }
         return habitaciones;
+
     }
 }
