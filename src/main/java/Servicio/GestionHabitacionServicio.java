@@ -6,7 +6,7 @@ import DAO.UsuarioDAO;
 import Modelo.Usuario;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -27,7 +27,7 @@ public class GestionHabitacionServicio {
         String clave = scanner.nextLine();
 
         System.out.print("Fecha nacimiento (YYYY-MM-DD): ");
-        Date fechaNacimiento = Date.parse(scanner.nextLine());
+        LocalDate fechaNacimiento = LocalDate.parse(scanner.nextLine());
         Usuario usuario = new Usuario(nombre, clave, fechaNacimiento);
 
         if (usuario.esMayorEdad() && usuarioDAO.altaUsuario(usuario)) {

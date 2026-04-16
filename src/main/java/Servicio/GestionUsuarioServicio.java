@@ -3,13 +3,15 @@ package Servicio;
 import DAO.UsuarioDAO;
 import Modelo.Usuario;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class GestionUsuarioServicio {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final Scanner scanner = new Scanner(System.in);
+    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public void altaUsuario() {
         System.out.print("Nombre: ");
@@ -19,10 +21,7 @@ public class GestionUsuarioServicio {
         System.out.print("Fecha nacimiento (YYYY-MM-DD): ");
 
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false);
-
-            Date fechaNac = sdf.parse(scanner.nextLine());
+            LocalDate fechaNac = LocalDate.parse(scanner.nextLine(), FORMATO_FECHA);
             Usuario usuario = new Usuario(nombre, clave, fechaNac);
 
             if (!usuario.esMayorEdad()) {
@@ -36,7 +35,7 @@ public class GestionUsuarioServicio {
                 System.out.println("Error: el usuario ya existe o fallo en BD");
             }
 
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
             System.out.println("Formato de fecha incorrecto. Usa YYYY-MM-DD");
         }
     }

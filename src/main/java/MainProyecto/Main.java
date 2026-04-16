@@ -16,7 +16,9 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Creacion del mapa
         Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
+        // Relleno del mapa
         insertarDatosEnMapa(estadoHabitaciones);
 
         int opcion;

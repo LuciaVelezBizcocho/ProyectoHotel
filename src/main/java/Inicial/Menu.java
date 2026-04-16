@@ -13,7 +13,7 @@ public class Menu {
     private static final Scanner scanner = new Scanner(System.in);
     private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
     private static final GestionUsuarioServicio gestionUsuario = new GestionUsuarioServicio();
-
+        //Inserción de datos en el map
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
         estadoHabitaciones.put(102, true);
@@ -26,7 +26,7 @@ public class Menu {
         estadoHabitaciones.put(204, true);
         estadoHabitaciones.put(205, false);
     }
-
+        // Muestra del menu
     public static void mostrarMenu() {
         System.out.println("\n=== GESTIÓN HOTELES (BD + MAPA) ===");
         System.out.println("0 - Salir");
@@ -38,23 +38,30 @@ public class Menu {
         System.out.println("6 - Baja Usuario (BD)");
         System.out.println("7 - Cambiar Clave (BD)");
     }
-
+        // Lectura de la opcion del usuario
     public static int leerOpcion() {
         System.out.print("Opción: ");
         return scanner.nextInt();
     }
-
+        // Ejecucion del código
     public static void ejecutarOpcion(Map<Integer, Boolean> estadoHabitaciones, int opcion) {
         scanner.nextLine(); // Limpiar buffer
         switch (opcion) {
             case 0: return;
             case 1: listarHabitacionesBD();
+            break;
             case 2: estadoOcupacion(estadoHabitaciones);
+                break;
             case 3: ocuparHabitacion(estadoHabitaciones);
+                break;
             case 4: liberarHabitacion(estadoHabitaciones);
+                break;
             case 5: gestionUsuario.altaUsuario();
+                break;
             case 6: gestionUsuario.bajaUsuario();
+                break;
             case 7: gestionUsuario.cambiarClave();
+                break;
             default: System.out.println("Opción inválida");
         }
     }
@@ -107,7 +114,7 @@ public class Menu {
             System.out.println("\n Habitación liberada correctamente");
         }
     }
-        // Modificar metodo ya que carece de sentido aparentemente
+
     public static int leerHabitacion() {
         System.out.print("\nNúmero de habitación: ");
         return scanner.nextInt();
