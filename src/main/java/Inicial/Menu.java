@@ -3,16 +3,16 @@ package Inicial;
 
 import DAO.HabitacionDAO;
 import Modelo.Habitacion;
+import Servicio.GestionUsuarioServicio;
 
 
 import java.util.*;
-
-import static MainProyecto.Main.usuarioServicio;
 
 
 public class Menu {
     private static final Scanner scanner = new Scanner(System.in);
     private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    private static final GestionUsuarioServicio gestionUsuario = new GestionUsuarioServicio();
 
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
@@ -52,9 +52,9 @@ public class Menu {
             case 2: estadoOcupacion(estadoHabitaciones);
             case 3: ocuparHabitacion(estadoHabitaciones);
             case 4: liberarHabitacion(estadoHabitaciones);
-            case 5: usuarioServicio.altaUsuario();// Dará error hasta que adrian rellene la clase usuarioServicio
-            case 6: usuarioServicio.bajaUsuario();// Dará error hasta que adrian rellene la clase usuarioServicio
-            case 7: usuarioServicio.cambiarClave();// Dará error hasta que adrian rellene la clase usuarioServicio
+            case 5: gestionUsuario.altaUsuario();
+            case 6: gestionUsuario.bajaUsuario();
+            case 7: gestionUsuario.cambiarClave();
             default: System.out.println("Opción inválida");
         }
     }
