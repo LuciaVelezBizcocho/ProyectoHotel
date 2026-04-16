@@ -1,11 +1,10 @@
 package Servicio;
-
-
-
 import DAO.UsuarioDAO;
 import Modelo.Usuario;
-
-
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -27,7 +26,22 @@ public class GestionHabitacionServicio {
         String clave = scanner.nextLine();
 
         System.out.print("Fecha nacimiento (YYYY-MM-DD): ");
-        Date fechaNacimiento = Date.parse(scanner.nextLine());
+        String input = scanner.nextLine();
+
+        Date fechaNacimiento;
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaLocal = LocalDate.parse(input, formatter);
+
+            fechaNacimiento = Date.from(
+                    fechaLocal.atStartOfDay(ZoneId.systemDefault()).toInstant()
+            );
+
+        } catch (DateTimeParseException e) {
+            System.out.println(" Formato de fecha incorrecto. Usa YYYY-MM-DD");
+            return;
+        }
         Usuario usuario = new Usuario(nombre, clave, fechaNacimiento);
 
         if (usuario.esMayorEdad() && usuarioDAO.altaUsuario(usuario)) {
