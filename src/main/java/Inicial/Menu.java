@@ -7,22 +7,7 @@ import Servicio.GestionUsuarioServicio;
 import java.util.*;
 
 public class Menu {
-    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
-    private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
-    private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
-        insertarDatosEnMapa(estadoHabitaciones);
-
-        int opcion;
-        do {
-            mostrarMenu();
-            opcion = leerOpcion();
-            ejecutarOpcion(estadoHabitaciones, opcion);
-        } while (opcion != 0);
-        scanner.close();
-    }
 
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
