@@ -7,6 +7,8 @@ import Modelo.Habitacion;
 
 import java.util.*;
 
+import static MainProyecto.Main.usuarioServicio;
+
 
 public class Menu {
     private static final Scanner scanner = new Scanner(System.in);

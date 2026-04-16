@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Usuario {
@@ -13,7 +16,6 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    // Getters y Setters
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public String getClave() { return clave; }
@@ -22,20 +24,14 @@ public class Usuario {
     public void setFechaNacimiento(Date fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
 
     public boolean esMayorEdad() {
-        Date hoy = new Date();
-
-        int anioActual = hoy.getYear();
-        int anioNacimiento = fechaNacimiento.getYear();
-
-        int edad = anioActual - anioNacimiento;
-
-        return edad >= 18;
+        LocalDate fechaNac = fechaNacimiento.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        return Period.between(fechaNac, LocalDate.now()).getYears() >= 18;
     }
 
     @Override
     public String toString() {
-        return String.format("Usuario{nombre='%s', clave='%s', fechaNacimiento=%s}",
-                nombre, clave, fechaNacimiento);
+        return String.format("Usuario{nombre='%s', fechaNacimiento=%s}", nombre, fechaNacimiento);
     }
-
 }
