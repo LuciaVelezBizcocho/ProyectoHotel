@@ -1,28 +1,18 @@
 package Inicial;
 
+
 import DAO.HabitacionDAO;
 import Modelo.Habitacion;
 import Servicio.GestionUsuarioServicio;
 
+
 import java.util.*;
 
+
 public class Menu {
-    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
-    private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
     private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) {
-        Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
-        insertarDatosEnMapa(estadoHabitaciones);
-
-        int opcion;
-        do {
-            mostrarMenu();
-            opcion = leerOpcion();
-            ejecutarOpcion(estadoHabitaciones, opcion);
-        } while (opcion != 0);
-        scanner.close();
-    }
+    private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    private static final GestionUsuarioServicio gestionUsuario = new GestionUsuarioServicio();
 
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
@@ -62,26 +52,29 @@ public class Menu {
             case 2: estadoOcupacion(estadoHabitaciones);
             case 3: ocuparHabitacion(estadoHabitaciones);
             case 4: liberarHabitacion(estadoHabitaciones);
-            case 5: usuarioServicio.altaUsuario();
-            case 6: usuarioServicio.bajaUsuario();
-            case 7: usuarioServicio.cambiarClave();
+            case 5: gestionUsuario.altaUsuario();
+            case 6: gestionUsuario.bajaUsuario();
+            case 7: gestionUsuario.cambiarClave();
             default: System.out.println("Opción inválida");
         }
     }
 
     public static void listarHabitacionesBD() {
         System.out.println("\n=== HABITACIONES DESDE BASE DE DATOS ===");
-        List<Habitacion> habitaciones = habitacionDAO.listarHabitaciones();
+        List<Habitacion> habitaciones = habitacionDAO.listarHabitaciones(); // Saco el listado de habitaciones de la BBDD y la inserto en la lista
+        // Si esta vacía, pone el mensaje No hay habitaciones
         if (habitaciones.isEmpty()) {
             System.out.println("No hay habitaciones");
             return;
         }
+        //Si no esta vacía desvuelve cada elemento de la lista habitaciones
         habitaciones.forEach(System.out::println);
     }
 
     // MÉTODOS DEL MAPA ORIGINAL (sin cambios)
     public static void estadoOcupacion(Map<Integer, Boolean> estadoHabitaciones) {
         System.out.println("\nEstado de ocupación (MAPA):");
+        // Comprueba en todas las habitaciones si esta ocupada o no, y lo  imprime en consola
         estadoHabitaciones.forEach((num, ocupada) ->
                 System.out.println("Habitación " + num + ": " +
                         (ocupada ? "ocupada" : "libre")));
@@ -89,8 +82,10 @@ public class Menu {
 
     public static void ocuparHabitacion(Map<Integer, Boolean> estadoHabitaciones) {
         int habitacion = leerHabitacion();
+        // Comprueba si la habitacion existe en el map
         if (!estadoHabitaciones.containsKey(habitacion)) {
             System.out.println("\n La habitación indicada no existe.");
+            // En el caso que exista devuelve true o false
         } else if ((Boolean) estadoHabitaciones.get(habitacion)) {
             System.out.println("\n La habitación ya está ocupada.");
         } else {
@@ -101,8 +96,10 @@ public class Menu {
 
     public static void liberarHabitacion(Map<Integer, Boolean> estadoHabitaciones) {
         int habitacion = leerHabitacion();
+        // Comprueba si la habitacion existe en el map
         if (!estadoHabitaciones.containsKey(habitacion)) {
             System.out.println("\n La habitación indicada no existe.");
+            // En el caso que exista devuelve true o false
         } else if (!(Boolean) estadoHabitaciones.get(habitacion)) {
             System.out.println("\n La habitación ya estaba libre.");
         } else {
@@ -110,11 +107,9 @@ public class Menu {
             System.out.println("\n Habitación liberada correctamente");
         }
     }
-
+        // Modificar metodo ya que carece de sentido aparentemente
     public static int leerHabitacion() {
         System.out.print("\nNúmero de habitación: ");
         return scanner.nextInt();
     }
-}
-
 }
