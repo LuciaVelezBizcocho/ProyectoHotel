@@ -11,11 +11,9 @@ public class HabitacionDAO {
 
     public List<Habitacion> listarHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
-        String sql = """
-            SELECT h.id, h.id_hotel, h.tiempo_alquiler, h.capacidad, h.precio
-            FROM habitacion h
-            JOIN hotel ho ON h.id_hotel = ho.id
-            """;
+        String sql = "SELECT h.id, h.id_hotel, h.tiempo_alquiler, h.capacidad, h.precio " +
+                "FROM habitacion h " +
+                "JOIN hotel ho ON h.id_hotel = ho.id";
 
         try (Connection conn = ConexionBD.getConexion();
              Statement stmt = conn.createStatement();
