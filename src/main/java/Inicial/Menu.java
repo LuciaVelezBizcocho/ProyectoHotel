@@ -1,13 +1,16 @@
 package Inicial;
 
+
 import DAO.HabitacionDAO;
 import Modelo.Habitacion;
-import Servicio.GestionUsuarioServicio;
+
 
 import java.util.*;
 
-public class Menu {
 
+public class Menu {
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
 
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);

@@ -11,8 +11,8 @@ import java.util.Scanner;
 import static Inicial.Menu.*;
 
 public class Main {
-    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
     private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
