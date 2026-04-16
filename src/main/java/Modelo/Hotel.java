@@ -1,5 +1,5 @@
 
-package main.java.Modelo;
+package Modelo;
 
 public class Hotel {
     private int id, num_habitacion;
