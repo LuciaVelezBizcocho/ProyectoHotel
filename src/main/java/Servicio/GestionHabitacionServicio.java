@@ -32,6 +32,7 @@ public class GestionHabitacionServicio {
 
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            System.out.println("HOLA");
             LocalDate fechaLocal = LocalDate.parse(input, formatter);
 
             fechaNacimiento = Date.from(
