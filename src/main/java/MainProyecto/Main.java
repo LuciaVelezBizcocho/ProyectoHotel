@@ -22,7 +22,7 @@ public class Main {
         int opcion;
         do {
             mostrarMenu();
-            System.out.println("Prueba De Conflicto");
+            System.out.println("Prueba De Conflicto Ramiro Antonio");
             opcion = leerOpcion();
             ejecutarOpcion(estadoHabitaciones, opcion);
         } while (opcion != 0);
