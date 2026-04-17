@@ -21,6 +21,7 @@ public class Main {
         System.out.println("Lucia Velez Bizcocho");
 
         Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
+        System.out.println("Conflicto mismo");
         insertarDatosEnMapa(estadoHabitaciones);
 
         int opcion;
