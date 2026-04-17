@@ -15,7 +15,7 @@ public class UsuarioDAO {
             pstmt.setString(1, usuario.getNombre());
             pstmt.setString(2, usuario.getClave());
 
-            pstmt.setDate(3, new java.sql.Date(usuario.getFechaNacimiento().getTime()));
+            pstmt.setDate(3, java.sql.Date.valueOf(usuario.getFechaNacimiento()));
             return pstmt.executeUpdate() > 0;
 
         } catch (SQLException e) {
