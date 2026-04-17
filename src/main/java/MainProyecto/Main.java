@@ -22,11 +22,11 @@ public class Main {
         int opcion;
         do {
             mostrarMenu();
+            System.out.println("Prueba De Conflicto");
             opcion = leerOpcion();
             ejecutarOpcion(estadoHabitaciones, opcion);
         } while (opcion != 0);
         scanner.close();
-        System.out.println("Ramiro Antonio Correa Mamani");
     }
 
 }
