@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
 
         //Impresión por consola del nombre
-
+        System.out.println("Lucia Velez Bizcocho");
 
         Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
         insertarDatosEnMapa(estadoHabitaciones);
