@@ -21,8 +21,9 @@ public class Main {
 
         int opcion;
         do {
-            mostrarMenu();
             System.out.println("Prueba De Conflicto Ramiro Antonio");
+            mostrarMenu();
+
             opcion = leerOpcion();
             ejecutarOpcion(estadoHabitaciones, opcion);
         } while (opcion != 0);
