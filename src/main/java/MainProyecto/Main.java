@@ -16,6 +16,10 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        //Impresión por consola del nombre
+
+
         Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
         insertarDatosEnMapa(estadoHabitaciones);
 
@@ -26,5 +30,8 @@ public class Main {
             ejecutarOpcion(estadoHabitaciones, opcion);
         } while (opcion != 0);
         scanner.close();
+
     }
+
+
 }
