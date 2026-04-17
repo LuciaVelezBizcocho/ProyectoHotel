@@ -26,6 +26,7 @@ public class Main {
             ejecutarOpcion(estadoHabitaciones, opcion);
         } while (opcion != 0);
         scanner.close();
+        System.out.println("Ramiro Antonio Correa Mamani");
     }
-    // Ramiro Antonio Correa Mamani
+
 }
