@@ -8,12 +8,29 @@ import Servicio.GestionUsuarioServicio;
 
 import java.util.*;
 
-
+/**
+ * Clase que gestiona la interfaz de menú y las operaciones relacionadas
+ * con el mapa de estados de las habitaciones.
+ * Proporciona métodos para mostrar opciones, capturar entrada del usuario
+ * y ejecutar las acciones correspondientes.
+ *
+ * @author Lucía, Adrián, Alberto y Antonio
+ * @version 1.0
+ */
 public class Menu {
+    /** Scanner para lectura de entrada del usuario */
     private static final Scanner scanner = new Scanner(System.in);
+    /** DAO para operaciones con habitaciones */
     private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    /** Servicio para gestión de usuarios */
     private static final GestionUsuarioServicio gestionUsuario = new GestionUsuarioServicio();
-        //Inserción de datos en el map
+/**
+ * Inicializa el mapa de estados de habitaciones con datos de ejemplo.
+ * Cada habitación se identifica por su número (clave) y su estado
+ * de ocupación (valor: true = ocupada, false = libre).
+ *
+ * @param estadoHabitaciones Mapa a rellenar con los datos iniciales
+ */
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
         estadoHabitaciones.put(102, true);
@@ -26,7 +43,11 @@ public class Menu {
         estadoHabitaciones.put(204, true);
         estadoHabitaciones.put(205, false);
     }
-        // Muestra del menu
+
+/**
+ * Muestra el menú principal de opciones del sistema.
+ * Incluye opciones para gestión de mapa de habitaciones y usuarios BD.
+ */
     public static void mostrarMenu() {
         System.out.println("\n=== GESTIÓN HOTELES (BD + MAPA) ===");
         System.out.println("0 - Salir");
@@ -37,12 +58,23 @@ public class Menu {
         System.out.println("5 - Baja Usuario (BD)");
         System.out.println("6 - Cambiar Clave (BD)");
     }
-        // Lectura de la opcion del usuario
+
+    /**
+     * Lee la opción ingresada por el usuario por consola.
+     *
+     * @return Número entero correspondiente a la opción seleccionada
+     */
     public static int leerOpcion() {
         System.out.print("Opción: ");
         return scanner.nextInt();
     }
-        // Ejecucion del código
+
+    /**
+     * Ejecuta la acción correspondiente a la opción seleccionada.
+     *
+     * @param estadoHabitaciones Mapa con el estado actual de las habitaciones
+     * @param opcion Opción numérica seleccionada por el usuario
+     */
     public static void ejecutarOpcion(Map<Integer, Boolean> estadoHabitaciones, int opcion) {
         scanner.nextLine(); // Limpiar buffer
         switch (opcion) {
@@ -63,15 +95,25 @@ public class Menu {
         }
     }
 
-    // MÉTODOS DEL MAPA ORIGINAL (sin cambios)
+    /**
+     * Muestra el estado de ocupación de todas las habitaciones en el mapa.
+     *
+     * @param estadoHabitaciones Mapa con los estados de las habitaciones
+     */
     public static void estadoOcupacion(Map<Integer, Boolean> estadoHabitaciones) {
         System.out.println("\nEstado de ocupación (MAPA):");
-        // Comprueba en todas las habitaciones si esta ocupada o no, y lo  imprime en consola
+
         estadoHabitaciones.forEach((num, ocupada) ->
                 System.out.println("Habitación " + num + ": " +
                         (ocupada ? "ocupada" : "libre")));
     }
 
+    /**
+     * Marca una habitación como ocupada en el mapa.
+     * Valida que la habitación exista y no esté ya ocupada.
+     *
+     * @param estadoHabitaciones Mapa con los estados de las habitaciones
+     */
     public static void ocuparHabitacion(Map<Integer, Boolean> estadoHabitaciones) {
         int habitacion = leerHabitacion();
         // Comprueba si la habitacion existe en el map
@@ -86,12 +128,17 @@ public class Menu {
         }
     }
 
+    /**
+     * Marca una habitación como libre en el mapa.
+     * Valida que la habitación exista y no esté ya libre.
+     *
+     * @param estadoHabitaciones Mapa con los estados de las habitaciones
+     */
     public static void liberarHabitacion(Map<Integer, Boolean> estadoHabitaciones) {
         int habitacion = leerHabitacion();
-        // Comprueba si la habitacion existe en el map
+
         if (!estadoHabitaciones.containsKey(habitacion)) {
             System.out.println("\n La habitación indicada no existe.");
-            // En el caso que exista devuelve true o false
         } else if (!(Boolean) estadoHabitaciones.get(habitacion)) {
             System.out.println("\n La habitación ya estaba libre.");
         } else {
@@ -100,6 +147,11 @@ public class Menu {
         }
     }
 
+    /**
+     * Solicita al usuario el número de habitación.
+     *
+     * @return Número de habitación ingresado
+     */
     public static int leerHabitacion() {
         System.out.print("\nNúmero de habitación: ");
         return scanner.nextInt();

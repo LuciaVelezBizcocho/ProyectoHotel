@@ -8,11 +8,27 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Clase de servicio que gestiona la lógica de negocio relacionada con los usuarios.
+ * Proporciona métodos para alta, baja y cambio de clave, interactuando con
+ * la capa DAO y manejando la interacción por consola.
+ *
+ * @author Lucía, Adrián, Alberto y Antonio
+ * @version 1.0
+ */
 public class GestionUsuarioServicio {
+    /** DAO para operaciones con usuarios en la base de datos */
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    /** Scanner para lectura de entrada del usuario */
     private final Scanner scanner = new Scanner(System.in);
+    /** Formato estándar para fechas (YYYY-MM-DD) */
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Registra un nuevo usuario en el sistema.
+     * Solicita nombre, clave y fecha de nacimiento por consola.
+     * Valida que el usuario sea mayor de edad antes de registrar.
+     */
     public void altaUsuario() {
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
@@ -40,6 +56,10 @@ public class GestionUsuarioServicio {
         }
     }
 
+    /**
+     * Elimina un usuario del sistema.
+     * Solicita nombre y clave de acceso (verificación de autenticidad).
+     */
     public void bajaUsuario() {
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
@@ -52,7 +72,10 @@ public class GestionUsuarioServicio {
             System.out.println("Usuario no encontrado o clave incorrecta");
         }
     }
-
+    /**
+     * Cambia la contraseña de un usuario existente.
+     * No requiere verificación de clave anterior.
+     */
     public void cambiarClave() {
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();

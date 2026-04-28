@@ -7,8 +7,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Access Object para la gestión de las operaciones relacionadas
+ * con las habitaciones en la base de datos.
+ *
+ * @author Lucía, Adrián, Alberto y Antonio
+ * @version 1.0
+ */
 public class HabitacionDAO {
-
+    /**
+     * Lista todas las habitaciones disponibles en el sistema,
+     * incluyendo información del hotel asociado mediante JOIN.
+     *
+     * @return Lista de objetos Habitacion con los datos de cada habitación.
+     *         Si no hay conexión o ocurre un error, retorna una lista vacía.
+     * @see Habitacion
+     */
     public List<Habitacion> listarHabitaciones() {
         List<Habitacion> habitaciones = new ArrayList<>();
         String sql = "SELECT h.id, h.id_hotel, h.tiempo_alquiler, h.capacidad, h.precio " +
