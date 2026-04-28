@@ -11,17 +11,14 @@ import java.util.Scanner;
 import static Inicial.Menu.*;
 
 public class Main {
-    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
     private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    private static final GestionUsuarioServicio usuarioServicio = new GestionUsuarioServicio();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        //Comentario por la impresión de nombre
-        System.out.println("Lucia Velez Bizcocho");
-
+        // Creacion del mapa
         Map<Integer, Boolean> estadoHabitaciones = new HashMap<>();
-        System.out.println("Conflicto mismo");
+        // Relleno del mapa
         insertarDatosEnMapa(estadoHabitaciones);
 
         int opcion;

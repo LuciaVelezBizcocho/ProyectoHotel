@@ -15,10 +15,14 @@ public class HabitacionDAO {
                 "FROM habitacion h " +
                 "JOIN hotel ho ON h.id_hotel = ho.id";
 
-        try (Connection conn = ConexionBD.getConexion();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
+        try{
+            Connection conn = ConexionBD.getConexion();
+            if (conn == null) {
+                System.err.println("No se pudo obtener conexión.");
+                return habitaciones;
+            }
+                     Statement stmt = conn.createStatement();
+                     ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Habitacion hab = new Habitacion(
                         rs.getInt("id"),

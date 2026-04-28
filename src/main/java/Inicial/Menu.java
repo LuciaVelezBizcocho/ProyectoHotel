@@ -1,14 +1,19 @@
 package Inicial;
 
+
 import DAO.HabitacionDAO;
 import Modelo.Habitacion;
 import Servicio.GestionUsuarioServicio;
 
+
 import java.util.*;
 
+
 public class Menu {
-
-
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final HabitacionDAO habitacionDAO = new HabitacionDAO();
+    private static final GestionUsuarioServicio gestionUsuario = new GestionUsuarioServicio();
+        //Inserción de datos en el map
     public static void insertarDatosEnMapa(Map<Integer, Boolean> estadoHabitaciones) {
         estadoHabitaciones.put(101, false);
         estadoHabitaciones.put(102, true);
@@ -21,49 +26,41 @@ public class Menu {
         estadoHabitaciones.put(204, true);
         estadoHabitaciones.put(205, false);
     }
-
+        // Muestra del menu
     public static void mostrarMenu() {
         System.out.println("\n=== GESTIÓN HOTELES (BD + MAPA) ===");
         System.out.println("0 - Salir");
-        System.out.println("1 - Ver habitaciones BD");
-        System.out.println("2 - Estado ocupación MAPA");
-        System.out.println("3 - Ocupar habitación (MAPA)");
-        System.out.println("4 - Liberar habitación (MAPA)");
-        System.out.println("5 - Alta Usuario (BD)");
-        System.out.println("6 - Baja Usuario (BD)");
-        System.out.println("7 - Cambiar Clave (BD)");
+        System.out.println("1 - Estado ocupación MAPA");
+        System.out.println("2 - Ocupar habitación (MAPA)");
+        System.out.println("3 - Liberar habitación (MAPA)");
+        System.out.println("4 - Alta Usuario (BD)");
+        System.out.println("5 - Baja Usuario (BD)");
+        System.out.println("6 - Cambiar Clave (BD)");
     }
-
+        // Lectura de la opcion del usuario
     public static int leerOpcion() {
         System.out.print("Opción: ");
         return scanner.nextInt();
     }
-
+        // Ejecucion del código
     public static void ejecutarOpcion(Map<Integer, Boolean> estadoHabitaciones, int opcion) {
         scanner.nextLine(); // Limpiar buffer
         switch (opcion) {
             case 0: return;
-            case 1: listarHabitacionesBD();
-            case 2: estadoOcupacion(estadoHabitaciones);
-            case 3: ocuparHabitacion(estadoHabitaciones);
-            case 4: liberarHabitacion(estadoHabitaciones);
-            case 5: usuarioServicio.altaUsuario();// Dará error hasta que adrian rellene la clase usuarioServicio
-            case 6: usuarioServicio.bajaUsuario();// Dará error hasta que adrian rellene la clase usuarioServicio
-            case 7: usuarioServicio.cambiarClave();// Dará error hasta que adrian rellene la clase usuarioServicio
+            case 1: estadoOcupacion(estadoHabitaciones);
+                break;
+            case 2: ocuparHabitacion(estadoHabitaciones);
+                break;
+            case 3: liberarHabitacion(estadoHabitaciones);
+                break;
+            case 4: gestionUsuario.altaUsuario();
+                break;
+            case 5: gestionUsuario.bajaUsuario();
+                break;
+            case 6: gestionUsuario.cambiarClave();
+                break;
             default: System.out.println("Opción inválida");
         }
-    }
-
-    public static void listarHabitacionesBD() {
-        System.out.println("\n=== HABITACIONES DESDE BASE DE DATOS ===");
-        List<Habitacion> habitaciones = habitacionDAO.listarHabitaciones(); // Saco el listado de habitaciones de la BBDD y la inserto en la lista
-        // Si esta vacía, pone el mensaje No hay habitaciones
-        if (habitaciones.isEmpty()) {
-            System.out.println("No hay habitaciones");
-            return;
-        }
-        //Si no esta vacía desvuelve cada elemento de la lista habitaciones
-        habitaciones.forEach(System.out::println);
     }
 
     // MÉTODOS DEL MAPA ORIGINAL (sin cambios)
@@ -102,7 +99,7 @@ public class Menu {
             System.out.println("\n Habitación liberada correctamente");
         }
     }
-        // Modificar metodo ya que carece de sentido aparentemente
+
     public static int leerHabitacion() {
         System.out.print("\nNúmero de habitación: ");
         return scanner.nextInt();
