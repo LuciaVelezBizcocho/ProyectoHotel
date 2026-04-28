@@ -30,13 +30,12 @@ public class Menu {
     public static void mostrarMenu() {
         System.out.println("\n=== GESTIÓN HOTELES (BD + MAPA) ===");
         System.out.println("0 - Salir");
-        System.out.println("1 - Ver habitaciones BD");
-        System.out.println("2 - Estado ocupación MAPA");
-        System.out.println("3 - Ocupar habitación (MAPA)");
-        System.out.println("4 - Liberar habitación (MAPA)");
-        System.out.println("5 - Alta Usuario (BD)");
-        System.out.println("6 - Baja Usuario (BD)");
-        System.out.println("7 - Cambiar Clave (BD)");
+        System.out.println("1 - Estado ocupación MAPA");
+        System.out.println("2 - Ocupar habitación (MAPA)");
+        System.out.println("3 - Liberar habitación (MAPA)");
+        System.out.println("4 - Alta Usuario (BD)");
+        System.out.println("5 - Baja Usuario (BD)");
+        System.out.println("6 - Cambiar Clave (BD)");
     }
         // Lectura de la opcion del usuario
     public static int leerOpcion() {
@@ -48,34 +47,20 @@ public class Menu {
         scanner.nextLine(); // Limpiar buffer
         switch (opcion) {
             case 0: return;
-            case 1: listarHabitacionesBD();
-            break;
-            case 2: estadoOcupacion(estadoHabitaciones);
+            case 1: estadoOcupacion(estadoHabitaciones);
                 break;
-            case 3: ocuparHabitacion(estadoHabitaciones);
+            case 2: ocuparHabitacion(estadoHabitaciones);
                 break;
-            case 4: liberarHabitacion(estadoHabitaciones);
+            case 3: liberarHabitacion(estadoHabitaciones);
                 break;
-            case 5: gestionUsuario.altaUsuario();
+            case 4: gestionUsuario.altaUsuario();
                 break;
-            case 6: gestionUsuario.bajaUsuario();
+            case 5: gestionUsuario.bajaUsuario();
                 break;
-            case 7: gestionUsuario.cambiarClave();
+            case 6: gestionUsuario.cambiarClave();
                 break;
             default: System.out.println("Opción inválida");
         }
-    }
-
-    public static void listarHabitacionesBD() {
-        System.out.println("\n=== HABITACIONES DESDE BASE DE DATOS ===");
-        List<Habitacion> habitaciones = habitacionDAO.listarHabitaciones(); // Saco el listado de habitaciones de la BBDD y la inserto en la lista
-        // Si esta vacía, pone el mensaje No hay habitaciones
-        if (habitaciones.isEmpty()) {
-            System.out.println("No hay habitaciones");
-            return;
-        }
-        //Si no esta vacía desvuelve cada elemento de la lista habitaciones
-        habitaciones.forEach(System.out::println);
     }
 
     // MÉTODOS DEL MAPA ORIGINAL (sin cambios)
